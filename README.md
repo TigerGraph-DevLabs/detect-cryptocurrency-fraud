@@ -55,3 +55,9 @@ First, we will install the two graph embedding algorithms - node2vec and fastRP 
 2. Go into the algorithms folder: `cd ~/embedding_demo/detect-cryptocurrency-fraud/algorithms`
 3. Run the install script: `./install_algorithms.sh`
 4. When the installation finishes, you can also see those queries in GraphStudio.
+
+Now with both data loaded and algorithms installed, we can finally run the embedding algorithms now. On the same terminal inside the TigerGraph server,
+1. Go to the repo directory: `cd ~/embedding_demo/detect-cryptocurrency-fraud`
+2. Run the GSQL script to start both the fastRP and node2vec embedding jobs: `gsql run_embedding.gsql`. Note: the fastRP job takes a few minutes and the node2vec job can take hours. If you stopped it for any reason, you can open the script with any text editor, comment out the jobs that have already finished, and rerun the script. While it is running, you can monitor the resource usage at the [admin portal](http://localhost:14240/admin/#/dashboard) of GraphStudio.
+3. Once the fastRP embedding finishes, you should see a file `fastRP_embedding.txt` under the output folder.
+4. Once the node2vec embedding finishes, you should see a temporary file `paths.txt` under the tmp folder which records all the random walks generated, and the embedding file `node2vec_embedding.txt` under the output folder.
