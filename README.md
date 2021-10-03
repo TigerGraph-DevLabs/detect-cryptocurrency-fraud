@@ -1,6 +1,6 @@
 # Detecting Cryptocurrency Fraud with Graph Embeddings
 
-This demo illustrates the use of TigerGraph and ML models to identify phishing accounts from cryptocurrency transactions. It demonstrates the following
+This demo illustrates the use of TigerGraph and ML models to identify phishing accounts from cryptocurrency transactions. It demonstrates the whole end-to-end experience including:
 1. How to load data into TigerGraph database
 2. How to compute graph embeddings using the TigerGraph Data Science Library algorithms
 3. How to train a neural network model with the learned embeddings
@@ -48,6 +48,10 @@ gsql load_data.gsql
 ```
 That script will create the vertex and edge schemas and load the files into the database. You can open the script with any text editor and check out the gsql commands. After the loading job finishes, you will see the graph in GraphStudio at `http://localhost:14240`. 
 
+## Graph Embedding
 
-
-
+First, we will install the two graph embedding algorithms - node2vec and fastRP - to the graph we just created. If you have already installed the [TigerGraph Data Science Library](https://github.com/tigergraph/gsql-graph-algorithms) (which includes a variety of graph algorithms in addition to embeddings and can be installed with 1-click), then feel free to skip this step. Otherwise, we are going to install these two algorithms specifically for this demo.
+1. Make sure you have ssh'ed into the TigerGraph server.
+2. Go into the algorithms folder: `cd ~/embedding_demo/detect-cryptocurrency-fraud/algorithms`
+3. Run the install script: `./install_algorithms.sh`
+4. When the installation finishes, you can also see those queries in GraphStudio.
