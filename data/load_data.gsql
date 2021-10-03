@@ -1,0 +1,19 @@
+# Define schema for nodes and edges  
+CREATE VERTEX Account (PRIMARY_ID account_id string, is_fraud bool)
+
+CREATE DIRECTED EDGE Transaction (from Account, to Account, amount float, timestamp string)
+
+# Define graph
+CREATE GRAPH Ethereum (Account, Transaction)
+
+# Define data loading job
+CREATE LOADING JOB load_ethereum_data FOR GRAPH Ethereum {
+    DEFINE FILENAME acct_csv="/home/tigergraph/embedding_demo/detect-cryptocurrency-fraud/data/accounts.csv";
+    DEFINE FILENAME tx_csv="/home/tigergraph/embedding_demo/detect-cryptocurrency-fraud/data/transactions.csv";
+
+    LOAD acct_csv TO VERTEX Account VALUES ($"ACCOUNT_ID", $"IS_FRAUD") USING header="true", separator=",";
+    LOAD tx_csv TO EDGE Transaction VALUES ($"SENDER_ACCOUNT_ID", $"RECEIVER_ACCOUNT_ID", $"TX_AMOUNT", $"TIMESTAMP") USING header="true", separator=",";
+}
+
+# Load data
+RUN LOADING JOB load_ethereum_data
