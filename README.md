@@ -61,3 +61,7 @@ Now with both data loaded and algorithms installed, we can finally run the embed
 2. Run the GSQL script to start both the fastRP and node2vec embedding jobs: `gsql run_embedding.gsql`. Note: the fastRP job takes a few minutes and the node2vec job can take hours. If you stopped it for any reason, you can open the script with any text editor, comment out the jobs that have already finished, and rerun the script. While it is running, you can monitor the resource usage at the [admin portal](http://localhost:14240/admin/#/dashboard) of GraphStudio.
 3. Once the fastRP embedding finishes, you should see a file `fastRP_embedding.txt` under the output folder.
 4. Once the node2vec embedding finishes, you should see a temporary file `paths.txt` under the tmp folder which records all the random walks generated, and the embedding file `node2vec_embedding.txt` under the output folder.
+
+## Neural Networks for Fraud Detection
+
+The included python notebook `fraud-detection.ipynb` contains all the code to train a multiple layer perceptron (i.e., fully connected neural networks) to predict phishing accounts. Input to the model are the node embeddings, and output is a score denoting how likely the node is a phishing account. Now fire up the notebook and have fun! 
