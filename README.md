@@ -5,17 +5,17 @@ This demo illustrates the use of TigerGraph and ML models to identify phishing a
 2. How to compute graph embeddings using the TigerGraph Data Science Library algorithms
 3. How to train a neural network model with the learned embeddings
 
-## Getting Started
+## Environment Setup
 
 The quickest way to experience with TigerGraph is to run its docker container. That is also the approach taken by this demo. However, this demo only requires access to an machine with TigerGraph running on it. 
 
 1. Create a folder `~/embedding_demo` on your machine. This will be the working directory for this demo. You can create a folder with any name at any location, but remember to use that instead in the rest of the demo. If you use terminal, run `mkdir ~/embedding_demo`.
-3. Inside `~/embedding_demo`, clone this repo. On terminal
+3. Inside `~/embedding_demo`, clone this repo.
 ```
 cd ~/embedding_demo
 git clone https://github.com/TigerGraph-DevLabs/detect-cryptocurrency-fraud.git
 ```
-3. Go into the cloned folder and install the required python packages. It is recommended to create a virtual enviroment for python first but it is not necessary. (This demo uses python >=3.6, so older versions of python might not work.) On termial
+3. Go into the cloned folder and install the required python packages. It is assumed that your python distribution has jupyter notebook installed and the notebook server is running. If you don't have python, might consider install the [anaconda distribution](https://www.anaconda.com/products/individual). It is recommended to create a virtual enviroment for this project but it is not necessary. (This demo uses python >=3.6, so older versions of python might not work.)
 ```
 cd ~/embedding_demo/detect-cryptocurrency-fraud
 pip install -r requirements.txt
@@ -27,8 +27,8 @@ pip install -r requirements.txt
 The graph data comes from (XBlock)[http://xblock.pro/ethereum/#EPT]. It is collected from the Ethereum platform, home to the second largest cryptocurrency, Ether (ETH), by Chen *et al*. Vertices in the graph are Ethereum accounts (also called wallets) and edges are transactions between the accounts. Each vertex has an attribute `is_fraud` denoting whether or not the vertex is a phishing account. 
 
 As the data files are too large to be included in this repo, they are to be downloaded at:
-* (accounts.csv)[https://tigergraph-public-data.s3.us-west-1.amazonaws.com/Ethereum/accounts.csv] contains data about vertices (accounts)
-* (transactions.csv)[https://tigergraph-public-data.s3.us-west-1.amazonaws.com/Ethereum/transactions.csv] contains data about edges (transactions)
+* [accounts.csv](https://tigergraph-public-data.s3.us-west-1.amazonaws.com/Ethereum/accounts.csv) contains data about vertices (accounts)
+* [transactions.csv](https://tigergraph-public-data.s3.us-west-1.amazonaws.com/Ethereum/transactions.csv) contains data about edges (transactions)
 
 If you are on the terminal, run the following to download
 ```
@@ -64,4 +64,4 @@ Now with both data loaded and algorithms installed, we can finally run the embed
 
 ## Neural Networks for Fraud Detection
 
-The included python notebook `fraud-detection.ipynb` contains all the code to train a multiple layer perceptron (i.e., fully connected neural networks) to predict phishing accounts. Input to the model are the node embeddings, and output is a score denoting how likely the node is a phishing account. Now fire up the notebook and have fun! 
+The included python notebook `fraud-detection.ipynb` contains all the code to train a multiple layer perceptron (i.e., fully connected neural network) to predict phishing accounts. Input to the model are the node embeddings, and output is a score denoting how likely the node is a phishing account. Now fire up the notebook and have fun! 
