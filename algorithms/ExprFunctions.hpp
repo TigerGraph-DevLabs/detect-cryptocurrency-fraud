@@ -98,16 +98,6 @@ namespace UDIMPL {
   }
 
   inline MapAccum<int, ListAccum<double>> fastRP(MapAccum<int, int> degree_diagonal, ListAccum<ListAccum<int>> edge_list, int m, int n, int k, int s, int d, double beta, string input_weights) {
-  // parameters
-  std::ofstream foutput("/home/tigergraph/parameters.txt");
-  foutput << "|E|:" << m << std::endl;
-  foutput << "|V|:" << n << std::endl;
-  foutput << "K:" << k << std::endl;
-  foutput << "Random Projection S:" << s << std::endl;
-  foutput << "Embedding Dimension:" << d << std::endl;
-  foutput << "Normalization Strength:" << beta << std::endl;
-  foutput << "Weights:" << std::endl;
-
   // get weights
   // weights should be formatted as a single string seperated by a comma
   std::stringstream s_stream(input_weights);
@@ -115,10 +105,8 @@ namespace UDIMPL {
   string current_weight;
   while (s_stream.good()) {
     std::getline(s_stream, current_weight, ',');
-    foutput << "\t" << current_weight << std::endl;
     weights.push_back(std::stod(current_weight));
   }
-  foutput.close();
 
   // random number generation
   std::random_device rd;
