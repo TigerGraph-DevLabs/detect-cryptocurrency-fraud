@@ -1,0 +1,13 @@
+# Define which graph to use
+USE GRAPH Ethereum
+
+# Set job timeout in seconds.
+SET query_timeout=36000000
+
+# Run fastRP
+RUN QUERY tg_fastRP_preprocessing("uid")
+RUN QUERY tg_fastRP(5355155, 2973489, 4, 3, 64, -0.8, "1,1,1,2", "uid", FALSE, "", "/home/tigergraph/embedding_demo/detect-cryptocurrency-fraud/output/fastrp_embedding.txt")
+
+# Run node2vec
+RUN QUERY tg_weighted_random_walk(4, 4, 1.0, 1.0, "/home/tigergraph/embedding_demo/detect-cryptocurrency-fraud/tmp/paths.txt")
+RUN QUERY tg_node2vec("/home/tigergraph/embedding_demo/detect-cryptocurrency-fraud/tmp/paths.txt", "/home/tigergraph/embedding_demo/detect-cryptocurrency-fraud/output/node2vec_embedding.txt", 64)
