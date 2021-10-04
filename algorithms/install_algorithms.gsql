@@ -54,7 +54,7 @@ CREATE QUERY tg_fastRP(INT num_edges, INT num_nodes, INT k, INT sampling_constan
     storeEmbeddings = SELECT s FROM Start:s POST-ACCUM s.fastrp_embedding = @@result.get(s.getAttr(index_attr, "INT"));
   END;
   IF file_path != "" THEN
-    f.println(@@result);
+    embedFile = SELECT s FROM Start:s POST-ACCUM f.println(s, @@result.get(s.getAttr(index_attr, "INT")));
   END;
 }
 
