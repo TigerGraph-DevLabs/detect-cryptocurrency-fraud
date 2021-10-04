@@ -1,0 +1,8 @@
+pandas
+pyTigerGraph
+sklearn
+torch
+numpy
+matplotlib
+seaborn
+notebook
