@@ -1,0 +1,6 @@
+# This folder is to store embedding output
+# and it will not be verion controlled.
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
